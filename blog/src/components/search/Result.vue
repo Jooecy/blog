@@ -53,7 +53,7 @@ export default {
           console.log(keyword);
           
           request({
-            url: '/search?search='+keyword,
+            url: '/api/search?search='+keyword,
             // params:{
             //   search: keyword
             // },

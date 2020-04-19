@@ -86,7 +86,7 @@ export default {
     },
     handleCurrentChange(val) {
       request({
-        url: '/blog/',
+        url: '/api/blog/',
         params:{
               page: val
             },

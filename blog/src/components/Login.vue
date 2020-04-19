@@ -40,7 +40,7 @@ export default {
   },
   created() {
               request({
-              url:'/do_something/',
+              url:'/api/do_something/',
               method: 'post',
               headers: {'Authorization':localStorage.getItem('logintoken')}
           }).then((res) => {
@@ -59,7 +59,7 @@ export default {
           data.append('username',this.form.username)
           data.append('password',this.form.password)
           request({
-              url:'/login/',
+              url:'/api/login/',
               method: 'post',
               data: data
           }).then((res) => {
