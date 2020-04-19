@@ -1,0 +1,794 @@
+{% load static %}
+{% load mark_tags %}
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search</title>
+  
+ 
+    <link rel="stylesheet" id="bootstrap-css"
+        href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}" type="text/css" media="all">
+
+    <link data-minify="1" rel="stylesheet" id="theme-css"
+        href="{% static 'index/style-d514eb0bd2baecbe427eac1bcba77159.css' %}"
+        type="text/css" media="all">
+   
+    <link data-minify="1" rel="stylesheet" id="home-new-css"
+        href="{% static 'index/home-new-68bc1b40fcd02a3a6994b78ef1107ce3.css' %}"
+        type="text/css" media="all">
+   
+    <script type="text/javascript"
+        src="{% static 'index/jquery-1.9.1.min.js' %}"></script>
+    
+    <script type="text/javascript" defer="" onload=""
+        src="{% static 'index/bootstrap.min.js' %}"></script>
+    
+
+    <style type="text/css">
+      
+      span.glyphicon.glyphicon-heart.markactive{
+            color: #FF164E;
+        }
+        span.glyphicon.glyphicon-heart{
+            color: #999999d6;
+            cursor: pointer;
+        }
+        /* style="color: #999999d6;cursor: pointer;" */
+
+        div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+            font-size: 0px !important;
+            color: rgba(0, 0, 0, 0)
+        }
+
+        div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+            font-size: 11px !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1
+        }
+
+        div[id*='ajaxsearchlite'].wpdreams_asl_container {
+            width: 93px;
+            margin: 4px 39px 0 0
+        }
+
+        div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+            font-weight: 700;
+            color: rgba(217, 49, 43, 1);
+            background-color: rgba(238, 238, 238, 1)
+        }
+
+        div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+            width: 70px;
+            height: 70px
+        }
+
+        div.asl_r .results {
+            max-height: none
+        }
+
+        .asl_w,
+        .asl_w * {
+            font-family: "Calibre" !important
+        }
+
+        .asl_m input[type=search]::placeholder {
+            font-family: "Calibre" !important
+        }
+
+        .asl_m input[type=search]::-webkit-input-placeholder {
+            font-family: "Calibre" !important
+        }
+
+        .asl_m input[type=search]::-moz-placeholder {
+            font-family: "Calibre" !important
+        }
+
+        .asl_m input[type=search]:-ms-input-placeholder {
+            font-family: "Calibre" !important
+        }
+
+        .asl_m .probox svg {
+            fill: rgba(0, 0, 0, 1) !important
+        }
+
+        .asl_m .probox .innericon {
+            background-color: rgba(255, 255, 255, 1) !important;
+            background-image: none !important;
+            -webkit-background-image: none !important;
+            -ms-background-image: none !important
+        }
+
+        div.asl_m.asl_w {
+            border: 1px solid rgb(227, 227, 227) !important;
+            border-radius: 25px 25px 25px 25px !important;
+            box-shadow: none !important
+        }
+
+        div.asl_m.asl_w .probox {
+            border: none !important
+        }
+        li {
+            list-style-type:none
+        }
+    </style>
+    
+    <style type="text/css" id="wp-custom-css">
+        .inv-recaptcha-holder {
+            opacity: 0;
+            height: 0;
+            position: relative;
+            z-index: -1
+        }
+    </style>
+  
+</head>
+
+<body
+    class="home page-template page-template-templates page-template-home page-template-templateshome-php page page-id-18098">
+    
+    
+<nav class="navbar navbar-default navbar-static-top " id="header">
+    <div class="container">
+        <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle
+                    navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> </button> <a class="navbar-brand brand" href="/"> 
+                    <img src="{% static '/index/img/logo.png' %}" alt="">
+                    </a></div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+            <div class="menu-3_x_header-container">
+                <ul id="menu-3_x_header" class="nav navbar-nav navbar-right">
+                    <li id="menu-item-13467"
+                        class="platform-menu-toggle dropdown-gap menu-item menu-item-type-custom menu-item-object-custom menu-item-13467">
+                        <a>My Marks</a>
+                        <div class="platform-menu --platform">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="heading">{% if user.is_authenticated %}<a href="{% url 'all_marks' %}">All marks</a>{% else %}All marks{% endif %}</div>
+                                    <div class="items">
+                                        <ul>{% if user.is_authenticated %}
+                                            {% mark_8 as mark8 %}
+                                                        {% for mark in mark8 %}
+                                            <li> <a target="blank" href="{{mark.url}}" class="red"> <svg
+                                                width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <ellipse opacity="0.2" cx="8.95592" cy="8.95592" rx="8.95592"
+                                                    ry="8.95592" transform="translate(0 0.0881653)"
+                                                    fill="#FF164E"></ellipse>
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M11.6906 0.502571C12.4231 1.17267 12.4231 2.2591 11.6906 2.9292C8.61405 5.7436 3.62595 5.7436 0.549386 2.9292C-0.183129 2.2591 -0.183129 1.17267 0.549386 0.502571C1.2819 -0.167524 2.46954 -0.167524 3.20206 0.502571C4.81359 1.97678 7.42641 1.97678 9.03794 0.502571C9.77046 -0.167524 10.9581 -0.167524 11.6906 0.502571Z"
+                                                    transform="translate(2.88 12.96)" fill="#FF164E"></path>
+                                            </svg> <span>
+                                                        
+                                                        {{mark.title}} {% empty %}暂无Mark信息{% endfor %}
+                                                        {% else %}
+                                                        未登录无法获取Marks
+                                                        {% endif %}
+                                                        </span> </a></li> 
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                              
+                             
+                            </div>
+                        </div>
+                    </li>
+                 
+                  
+                    <li id="menu-item-13471"
+                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13471"><a
+                            href="/blog">Blog</a></li>
+                    <li id="menu-item-13468"
+                        class="id-header-demo-link menu-item menu-item-type-custom menu-item-object-custom menu-item-13468">
+                        <a href="#">Demo</a></li>
+                    <li id="menu-item-13472"
+                        class="sign-in-button menu-item menu-item-type-custom menu-item-object-custom menu-item-13472">
+                        {% if not user.is_authenticated %}
+                        <a href="{% url 'login' %}">登录</a>
+                        {% else %}
+                        <a href="{% url 'login_out' %}">注销</a>
+                         {% endif %}</li>
+                </ul>
+            </div>
+            <style>
+                @font-face {
+                    font-family: '3reply';
+                    font-weight: 400;
+                    font-style: normal;
+                }
+
+                [class^="r3-icon-"]:before,
+                [class*=" r3-icon-"]:before {
+                    font-family: "3reply";
+                    font-style: normal;
+                    font-weight: 400;
+                    speak: none;
+                    display: inline-block;
+                    text-decoration: inherit;
+                    width: 1em;
+                    margin-right: .2em;
+                    text-align: center;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1em;
+                    margin-left: .2em;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale
+                }
+
+                .r3-icon-star:before {
+                    content: '\e800'
+                }
+
+                .r3-icon-link:before {
+                    content: '\e801'
+                }
+
+                .r3-icon-arrow-right:before {
+                    content: '\e802'
+                }
+
+                .r3-icon-star-half:before {
+                    content: '\f123'
+                }
+
+                .menu-3_x_header-container,
+                ul.nav.navbar-nav.navbar-right>li>a {
+                    font-family: 'Calibre'
+                }
+
+                ul.nav.navbar-nav.navbar-right>li>a {
+                    padding: 8px 20px;
+                    font-size: 16px
+                }
+
+                .navbar-colored .sign-in-button a {
+                    color: #fff;
+                    border-color: #fff
+                }
+
+                .navbar-colored .sign-in-button a:hover,
+                .navbar-colored .sign-in-button a:focus {
+                    border-color: rgba(255, 255, 255, .75) !important;
+                    color: rgba(255, 255, 255, .85) !important
+                }
+
+                .platform-menu {
+                    font-size: 18px;
+                    overflow: hidden
+                }
+
+                .platform-menu .heading {
+                    line-height: 19px;
+                    padding-bottom: 10px
+                }
+
+                .navbar .platform-menu ul {
+                    padding-left: 0
+                }
+
+                .platform-menu ul>li {
+                    padding: 7px 0
+                }
+
+                .navbar-default,
+                .navbar-default.sticky {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    padding-top: 20px;
+                    padding-bottom: 1px;
+                }
+
+                .navbar-default .navbar-nav>li>a {
+                    font-weight: 500;
+                    color: #091D41
+                }
+
+                .navbar-default .navbar-nav li .sub-menu li a {
+                    font-size: 18px
+                }
+
+                .navbar .navbar-toggle {
+                    margin-top: 16px
+                }
+
+                .sign-in-button a {
+                    background: #fff;
+                    border: 1px solid #005AFF;
+                    color: #005AFF;
+                    padding: 7px 20px;
+                    border-radius: 200px;
+                    font-size: 18px;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    transition: all .1s;
+                    font-weight: 500
+                }
+
+                @media (max-width:992px) {
+                    .navbar-default .navbar-nav>li.sign-in-button>a {
+                        border: none !important;
+                        color: #75858f !important
+                    }
+                }
+
+                .navbar-default .navbar-nav>li.sign-in-button>a {
+                    background: none;
+                    color: #005AFF
+                }
+
+                .navbar-default .navbar-nav>li.sign-in-button>a:hover {
+                    color: #0044bf;
+                    border-color: #0044bf
+                }
+
+                @media (min-width:768px) {
+                    .navbar-default .navbar-brand {
+                        padding-left: 30px
+                    }
+
+                    .platform-menu .heading {
+                        color: #091D41;
+                        font-weight: 500;
+                        border-bottom: 1px solid #DEDEDE
+                    }
+
+                    .platform-menu ul>li:first-child {
+                        padding-top: 0
+                    }
+                }
+
+                @media (max-width:992px) {
+                    .navbar-colored {
+                        padding-bottom: 15px;
+                        padding-top: 10px;
+                        margin-top: 0;
+                        margin-bottom: 0
+                    }
+
+                    .navbar-colored .navbar-nav {
+                        background-color: #fff
+                    }
+
+                    .navbar-colored ul.nav.navbar-nav.navbar-right>li>a {
+                        color: #75858f !important
+                    }
+
+                    .navbar-colored .platform-menu a {
+                        color: #005AFF
+                    }
+
+                    .navbar-colored .platform-menu a:hover,
+                    .navbar-colored .platform-menu a:focus {
+                        color: #0044bf
+                    }
+
+                    .navbar-nav .sub-menu {
+                        margin: 0 36px;
+                        padding: 15px 30px 0 30px;
+                        font-weight: 500
+                    }
+
+                    .navbar-nav .sub-menu>li {
+                        padding: 10px 0
+                    }
+
+                    .platform-menu-toggle>a {
+                        display: none !important
+                    }
+
+                    .platform-menu .heading {
+                        padding: 22px 20px;
+                        margin: 0 36px;
+                        font-size: 26px;
+                        font-weight: 300;
+                        text-align: center;
+                        border-bottom: 1px solid #eaeaea;
+                        color: #75858f
+                    }
+
+                    .platform-menu .heading span {
+                        display: none
+                    }
+
+                    .platform-menu .items {
+                        margin: 0 36px;
+                        padding: 15px 30px 0 30px
+                    }
+
+                    .platform-menu .items .second {
+                        padding-top: 20px
+                    }
+
+                    .platform-menu ul>li {
+                        padding: 6px 0
+                    }
+                }
+
+                @media (min-width:993px) {
+                    .navbar-default {
+                        margin-top: 0;
+                        padding-top: 20px
+                    }
+
+                    .sign-in-button {
+                        padding-left: 15px
+                    }
+
+                    .dropdown-gap>a {
+                        height: 45px;
+                        cursor: default
+                    }
+
+                    .navbar-right {
+                        position: relative;
+                        right: 30px;
+                        margin-right: 0
+                    }
+
+                    .platform-menu {
+                        left: -40px;
+                        margin-left: 0
+                    }
+
+                    .platform-menu,
+                    .navbar-nav .sub-menu {
+                        position: absolute;
+                        top: 80px;
+                        z-index: 65535;
+                        padding: 30px;
+                        border-radius: 4px;
+                        background: #fff;
+                        box-shadow: 0 3px 8px rgba(0, 0, 0, .1);
+                        opacity: 0;
+                        transform: scaleY(0)
+                    }
+
+                    .navbar-nav .menu-item:hover .sub-menu {
+                        left: -20px;
+                        width: 240px
+                    }
+
+                    .navbar-nav .sub-menu li:hover a {
+                        color: #005AFF
+                    }
+
+                    .navbar-nav .sub-menu>li {
+                        padding: 5px 0
+                    }
+
+                    .platform-menu.visible {
+                        min-width: 625px;
+                        left: -100%
+                    }
+
+                    .platform-menu.visible,
+                    .navbar-nav .menu-item:hover .sub-menu {
+                        transition: top .4s, opacity .3s;
+                        opacity: 1;
+                        top: 40px;
+                        transform: scaleY(1)
+                    }
+
+                    .platform-menu .heading span {
+                        float: right
+                    }
+
+                    .platform-menu .items {
+                        padding-top: 20px
+                    }
+
+                    .platform-menu .row>.col-md-5 {
+                        width: 34%
+                    }
+
+                    .platform-menu .row>.col-md-7 {
+                        width: 66%
+                    }
+
+                    .platform-menu__footer {
+                        padding-top: 20px
+                    }
+                }
+
+                @media (min-width:993px) and (max-width:1199px) {
+                    .sign-in-button {
+                        margin-right: 15px
+                    }
+                }
+
+                @media (min-width:1200px) {
+                    .platform-menu.visible {
+                        min-width: 710px;
+                        left: -135%
+                    }
+                }
+
+                .platform-menu .items p {
+                    color: gray;
+                    padding-top: 10px;
+                    padding-bottom: 15px;
+                    font-size: 16px;
+                    margin-bottom: 0
+                }
+
+                .platform-menu a,
+                .sub-menu a {
+                    font-weight: 500;
+                    color: #005AFF
+                }
+
+                .platform-menu a:hover,
+                .platform-menu a:focus,
+                .sub-menu a:hover,
+                .sub-menu a:focus {
+                    color: #0044bf
+                }
+
+                .platform-menu svg {
+                    width: 25px;
+                    position: relative;
+                    top: 5px
+                }
+
+                @media (max-width:767px) {
+                    .platform-menu svg {
+                        left: -5px
+                    }
+                }
+
+                .platform-menu .r3-icon-arrow-right {
+                    font-size: 10px
+                }
+
+                .platform-menu .green {
+                    color: #13DEA1
+                }
+
+                .platform-menu .purple {
+                    color: #3414F7
+                }
+
+                .platform-menu .yellow {
+                    color: #FFBF43
+                }
+
+                .platform-menu .red {
+                    color: #FF164E
+                }
+
+                .platform-menu .violet {
+                    color: #9123FF
+                }
+
+                .platform-menu .blue {
+                    color: #00BAF4
+                }
+
+                .MenuItems-item p {
+                    color: gray;
+                    padding-top: 10px;
+                    padding-bottom: 30px;
+                    font-size: 16px;
+                    margin-bottom: 0
+                }
+
+                .MenuItems-item:last-child p {
+                    padding-bottom: 15px
+                }
+
+                .MenuItems-item i.r3-icon-arrow-right {
+                    font-size: 10px
+                }
+
+                .is-mobile {
+                    display: none
+                }
+
+                @media (max-width:992px) {
+                    .menu-item.--resources>a {
+                        padding: 22px 20px !important;
+                        font-size: 26px !important
+                    }
+
+                    .is-mobile {
+                        display: block
+                    }
+                }
+
+                .sub-menu.--resources {
+                    display: none
+                }
+
+                .menu-item>.sub-menu.--resources {
+                    display: block
+                }
+            </style>
+            <script>$(function () {
+                    $('.platform-menu').appendTo('.platform-menu-toggle');
+                    $('.sub-menu.--resources').appendTo('.menu-item.--resources');
+
+                    $('.platform-menu-toggle').on('mouseenter', function () {
+                        $('.platform-menu').addClass('visible');
+                    });
+
+                    $('.platform-menu-toggle').on('mouseleave', function () {
+                        $('.platform-menu').removeClass('visible');
+                    });
+                });</script>
+        </div>
+    </div>
+</nav>
+
+   
+
+    <main class="Main">
+        <div class="Welcome">
+            <div class="Welcome-wrapper">
+                <h1 class="Welcome-title">输入关键字以获取最优解</h1>
+            </br>
+                <p class="Welcome-text"></p>
+                <div class="Welcome-formWrapper">
+                    <form class="Welcome-form" name="search" action="{% url 'index' %}"
+                        method="GET" data-track-event="signup_website" data-active-campaign-list="90"
+                        data-active-campaign-skip-free="true"> <input class="Welcome-formInput" name="search"
+                            type="text" placeholder="Enter your key word" required="" id="searchform"> <button
+                            class="Welcome-formSubmit" type="submit">Search Now</button>{% csrf_token %}</form>
+                </div>
+                <div class="Welcome-list">
+                    <div class="Welcome-listItem"> <span class="Welcome-listItemText">只有一个搜索结果 </span></div>
+                    <div class="Welcome-listItem"> <span class="Welcome-listItemText">搜索结果可以收藏</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="col-lg-6 col-lg-offset-3  col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0" id="center">
+                {% if user.is_authenticated %}
+                
+                {% if status %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4 style="margin-top: 0em;margin-bottom: 10px;"><a target="blank" href="{{ result.url }}">{{ result.title}}</a></h4>
+                    
+                        <p>{{ result.description }}</p>
+                        
+                        <a target="blank" href="{{ result.url }}">{{ result.url }}...</a>
+                    </div>
+                    <div class="panel-footer">使用<a target="blank" href="https://www.baidu.com/s?ie=UTF-8&wd={{keyword}}"> 百度 </a>重新搜索。 {{error}} 
+                    <span onclick="markChange()" class="glyphicon glyphicon-heart {% mark_active result %} pull-right" aria-hidden="true"></span></div>
+                    </div>
+                    
+
+                    <!-- href="{% url 'mark' %}?user={{request.user}}&title={{result.title}}&url={{result.url}}&description={{result.description}}" -->
+
+                {% else %}
+                
+                {% if all_marks_active %}
+                    {% for all in allmarks %}
+                    <div class="jumbotron" style="padding-top: 0.5em;padding-bottom: 0.5em;margin-bottom: 0.7em; background-color: #eeeeee96;">
+                        <a target="blank" href="{{all.url}}"><h4 style="margin-bottom: 0em;margin-top: 0em;padding-bottom: 0em;">{{all.title}}</a><a href="{% url 'list_del_mark' %}?user={{ all.mark_user }}&id={{ all.pk }}"><span class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" style="color: #FF164E;"></span></h4></a>
+                    </div>
+                    {% empty %}
+                    <div class="jumbotron" style="padding-top: 0.5em;padding-bottom: 0.5em;margin-bottom: 0.7em; background-color: #eeeeee96;">
+                        <h4 style="margin-bottom: 0em;margin-top: 0em;padding-bottom: 0em;">暂无Mark信息</h4>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="jumbotron" style="padding-top: 15px;padding-bottom: 10px;background-color: #eeeeee96;">
+                    <h3 style="margin-bottom: 0em;margin-top: 0em;padding-bottom: 0.2em;">Hello, {{user.username|title}}</h3>
+                    <p>这里是你的历史搜索记录</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">查看更多</a></p>
+                  </div>
+                {% endif %}
+                {% endif %}
+                {% else %}
+                <div class="alert alert-info" role="alert"><p class="center">
+                    {{ not_login }} <a href="{% url 'login' %}" class="alert-link">立刻去登录</a></p>
+                  </div>
+                
+                {% endif %}
+        </div>
+    </div>
+<script>
+        function markChange(){
+            var is_mark = document.getElementsByClassName('markactive').length == 0
+            console.log(is_mark);
+            $.ajax({
+                url: "{% url 'mark' %}",
+                type: "GET",
+                data: {
+                    user: '{{request.user}}',
+                    title: '{{result.title}}',
+                    url: '{{result.url}}',
+                    description: '{{result.description}}',
+                    is_mark: is_mark
+                },
+                cache: false,
+                success: function(data){
+                    console.log(data)
+                    if(data['status']=='SUCCESS'){
+                        var element = $(document.getElementsByClassName('glyphicon'));
+                        if(is_mark){
+                            element.addClass('markactive');
+                        }else{
+                            element.removeClass('markactive');
+                        }
+                    }else{
+                      alert(data['message']);
+                    }
+
+                },
+                error: function(xhr){
+
+                },
+
+            });
+        }
+            </script>
+
+ 
+        <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="Videos js-Videos">
+            <div class="Videos-wrapper">
+                <div class="Videos-header">
+                    <div class="Videos-tab js-Video-tab" data-tab="video-0"> <span class="Videos-tabIcon"> <img width="1"
+                                height="1" src="{% static 'index/img/discover-prospects-on-the-go.svg' %}"
+                                class="attachment-thumbnail size-thumbnail lazyloaded" alt=""
+                                data-lazy-src="{% static 'index/img/discover-prospects-on-the-go.svg' %}"
+                                data-was-processed="true"><noscript><img width="1" height="1"
+                                    src="{% static 'index/img/discover-prospects-on-the-go.svg' %}"
+                                    class="attachment-thumbnail size-thumbnail" alt="" /></noscript> </span> <span
+                            class="Videos-tabText">Discover</span>
+                        
+                    </div>
+                    <div class="Videos-tab js-Video-tab" data-tab="video-1"> <span class="Videos-tabIcon"> <img width="1"
+                                height="1" src="{% static 'index/img/automate-personal-emails.svg' %}"
+                                class="attachment-thumbnail size-thumbnail lazyloaded" alt=""
+                                data-lazy-src="{% static 'index/img/automate-personal-emails.svg' %}"
+                                data-was-processed="true"><noscript><img width="1" height="1"
+                                    src="{% static 'index/img/automate-personal-emails.svg' %}"
+                                    class="attachment-thumbnail size-thumbnail" alt="" /></noscript> </span> <span
+                            class="Videos-tabText">Engage</span>
+                        
+                    </div>
+                    <div class="Videos-tab js-Video-tab" data-tab="video-2"> <span class="Videos-tabIcon"> <img width="1"
+                                height="1" src="{% static 'index/img/speed-up-sales-flow.svg' %}"
+                                class="attachment-thumbnail size-thumbnail lazyloaded" alt=""
+                                data-lazy-src="{% static 'index/img/speed-up-sales-flow.svg' %}"
+                                data-was-processed="true"><noscript><img width="1" height="1"
+                                    src="{% static 'index/img/speed-up-sales-flow.svg' %}"
+                                    class="attachment-thumbnail size-thumbnail" alt="" /></noscript> </span> <span
+                            class="Videos-tabText">Execute</span>
+                        
+                    </div>
+                    <div class="Videos-tab js-Video-tab" data-tab="video-3"> <span class="Videos-tabIcon"> <img width="1"
+                                height="1" src="{% static 'index/img/get-more-sales-by-improving-results.svg' %}"
+                                class="attachment-thumbnail size-thumbnail lazyloaded" alt=""
+                                data-lazy-src="{% static 'index/img/get-more-sales-by-improving-results.svg' %}"
+                                data-was-processed="true"><noscript><img width="1" height="1"
+                                    src="{% static 'index/img/get-more-sales-by-improving-results.svg' %}"
+                                    class="attachment-thumbnail size-thumbnail" alt="" /></noscript> </span> <span
+                            class="Videos-tabText">Improve</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </main>
+  
+  
+</body>
+
+</html>
+
+

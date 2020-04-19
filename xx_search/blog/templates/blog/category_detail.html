@@ -1,0 +1,12 @@
+{% extends 'blog/blog_list.html' %}
+
+
+{% block title %}
+{# category_name为处理方法category_detail返回字典context中的键 #}
+{{ category_name.category }}
+{% endblock %}
+
+
+{% block blog_list_title %}分类：{{ category_name.category }}{% endblock %}
+
+

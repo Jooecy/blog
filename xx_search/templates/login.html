@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Log in</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Lato, Verdana
+        }
+
+        html,
+        body,
+        .left-side,
+        .right-side {
+            height: 100%
+        }
+
+        .clear {
+            clear: both
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .relative-wrap {
+            position: relative
+        }
+
+        .left-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 60%;
+            float: left;
+            background: #005aff;
+            overflow: hidden
+        }
+
+        .left-side .logo {
+            top: 25px;
+            position: absolute;
+            left: 60px
+        }
+
+        .left-side .centered-text {
+            position: relative;
+            margin: 0 60px 0 60px
+        }
+
+        .left-side .main-text,
+        .left-side .mute-text {
+            color: #fff
+        }
+
+        .left-side .main-text {
+            font-size: 60px;
+            line-height: 61px;
+            margin-bottom: 30px
+        }
+
+        .left-side .mute-text {
+            font-size: 18px;
+            line-height: 28px;
+            opacity: .7
+        }
+
+        .right-side {
+            margin-left: 60%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative
+        }
+
+        .right-side .logo {
+            top: 20px;
+            position: absolute;
+            left: 60px;
+            display: none
+        }
+
+        .right-side .centered-text {
+            width: 350px;
+            padding: 0 0 0 50px
+        }
+
+        .right-side .main-title {
+            font-size: 36px;
+            line-height: 43px
+        }
+
+        .right-side .link {
+            font-size: 16px;
+            line-height: 19px;
+            text-decoration: none
+        }
+
+        .right-side .account-page .top-right {
+            position: absolute;
+            top: 30px;
+            right: 60px;
+            color: #000;
+            opacity: .5
+        }
+
+        .right-side .account-page .sub-title {
+            margin-bottom: 80px;
+            position: relative
+        }
+
+        .right-side .account-page .sub-title .main-error {
+            position: absolute;
+            color: #ff004d;
+            width: 100%;
+            top: 40px;
+            left: 0
+        }
+
+        .right-side .account-page .sub-title .main-error a {
+            color: #ff004d;
+            text-decoration: underline
+        }
+
+        .right-side .account-page .sub-title a {
+            text-decoration: none;
+            color: #0053ff
+        }
+
+        .right-side .account-page label {
+            font-size: 14px;
+            line-height: 19px;
+            color: #9ba1ad;
+            margin-top: 20px;
+            display: block
+        }
+
+        .right-side .account-page input {
+            padding: 11px 0;
+            background-color: #fff !important;
+            border: none;
+            border-bottom: 1px solid #c7cad1;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+            outline: none
+        }
+
+        .right-side .account-page input.error,
+        .right-side .account-page .select-wrap select.error {
+            border-color: #ff004d
+        }
+
+        .right-side .account-page .select-wrap {
+            position: relative
+        }
+
+        .right-side .account-page .select-wrap select {
+            width: 100%;
+            background: transparent;
+            display: block;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid #c7cad1;
+            font-size: 16px;
+            padding: 11px 30px 11px 0
+        }
+
+        .right-side .account-page .select-wrap svg {
+            position: absolute;
+            right: 0;
+            bottom: 15px;
+            cursor: pointer
+        }
+
+        .right-side .account-page button {
+            border: none;
+            border-radius: 100px;
+            position: relative;
+            width: 100%;
+            padding: 9px 18px 9px 18px;
+            font-size: 16px;
+            line-height: 19px;
+            margin-top: 40px;
+            cursor: pointer;
+            outline: none
+        }
+
+        .right-side .account-page .submit-btn {
+            background: #005aff;
+            border: 1px solid #005aff;
+            color: #fff
+        }
+
+        .right-side .account-page .submit-btn:disabled {
+            opacity: .7;
+            cursor: default
+        }
+
+        .right-side .account-page .google-btn {
+            background: #fff;
+            color: #000;
+            border: 1px solid #9ba1ad;
+            margin-top: 10px;
+            position: relative
+        }
+
+        .right-side .account-page .google-btn svg {
+            position: absolute;
+            top: 11px;
+            left: 16px
+        }
+
+        .right-side .account-page .forgot,
+        .right-side .account-page .back-to-login {
+            text-align: center;
+            display: block;
+            margin-top: 20px
+        }
+
+        .right-side .account-page .forgot {
+            color: #000;
+            opacity: .5;
+            position: absolute;
+            width: 100%
+        }
+
+        .right-side .account-page .back-to-login {
+            color: #005aff
+        }
+
+        .password-wrap,
+        .confirm-password-wrap,
+        .email-wrap {
+            position: relative
+        }
+
+        .password-wrap .tooltip-icon,
+        .confirm-password-wrap .tooltip-icon,
+        .email-wrap .tooltip-icon {
+            cursor: default;
+            position: absolute;
+            bottom: 8px;
+            right: 0
+        }
+
+        .password-wrap .tooltip-icon svg,
+        .confirm-password-wrap .tooltip-icon svg,
+        .email-wrap .tooltip-icon svg {
+            opacity: .5
+        }
+
+        .email-wrap .hint-block-wrap,
+        .password-wrap .hint-block-wrap,
+        .confirm-password-wrap .hint-block-wrap {
+            position: fixed
+        }
+
+        .email-wrap .hint-block-wrap {
+            width: 275px
+        }
+
+        .password-wrap .hint-block-wrap,
+        .confirm-password-wrap .hint-block-wrap {
+            width: 250px
+        }
+
+        .password-wrap .hint-block,
+        .confirm-password-wrap .hint-block,
+        .email-wrap .hint-block {
+            position: relative;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .24);
+            padding: 15px 25px;
+            background: #fff
+        }
+
+        .hint-block .hint-title {
+            font-size: 14px;
+            margin-bottom: 5px
+        }
+
+        .hint-block .error {
+            font-size: 14px;
+            margin: 5px 0;
+            color: gray
+        }
+
+        .hint-block .error.green {
+            color: green
+        }
+
+        .triangle {
+            position: absolute;
+            height: 30px;
+            width: 15px;
+            bottom: 25px;
+            left: -9px
+        }
+
+        .triangle:before {
+            content: "";
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            left: 5px;
+            top: 5px;
+            background-color: #fff;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            box-shadow: 6px 6px 4px -4px rgba(0, 0, 0, .2);
+            position: absolute;
+            display: block
+        }
+
+        .right-side .account-page .check-box-terms,
+        .right-side .account-page .check-box-policy {
+            padding-top: 25px;
+            display: flex;
+            align-items: center
+        }
+
+        .right-side .account-page .check-box-terms .label,
+        .right-side .account-page .check-box-policy .label {
+            color: #4a556b;
+            padding: 0 0 0 9px
+        }
+
+        .right-side .account-page .check-box-terms svg,
+        .right-side .account-page .check-box-policy svg {
+            cursor: pointer
+        }
+
+        .right-side .account-page .first-step,
+        .right-side .account-page .second-step,
+        .right-side .account-page .three-step,
+        .term-popup-backdrop,
+        .email-wrap .hint-block-wrap,
+        .email-wrap .triangle,
+        .password-wrap .hint-block-wrap,
+        .password-wrap .triangle,
+        .confirm-password-wrap .hint-block-wrap,
+        .confirm-password-wrap .triangle {
+            display: none
+        }
+
+        .right-side .account-page .first-step.show,
+        .right-side .account-page .second-step.show,
+        .right-side .account-page .three-step.show,
+        .email-wrap .hint-block-wrap.show,
+        .email-wrap .triangle.show,
+        .password-wrap .hint-block-wrap.show,
+        .password-wrap .triangle.show,
+        .confirm-password-wrap .hint-block-wrap.show,
+        .confirm-password-wrap .triangle.show {
+            display: block
+        }
+
+        .check-box-off,
+        .check-box-on {
+            display: none
+        }
+
+        .check-box-off.show,
+        .check-box-on.show {
+            display: block
+        }
+
+        @keyframes hinge {
+            0% {
+                transform-origin: top left;
+                animation-timing-function: ease-in-out
+            }
+
+            20%,
+            60% {
+                transform: rotate(80deg);
+                transform-origin: top left;
+                animation-timing-function: ease-in-out
+            }
+
+            40%,
+            80% {
+                transform: rotate(60deg);
+                transform-origin: top left;
+                animation-timing-function: ease-in-out
+            }
+
+            to {
+                transform: translate3d(0, 1700px, 0)
+            }
+        }
+
+        .hinge {
+            animation-name: hinge;
+            animation-duration: 2s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards
+        }
+
+        .submit-btn .circle-progress {
+            color: #fff;
+            opacity: 0;
+            z-index: auto;
+            position: absolute;
+            top: 11px;
+            right: 10px;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            transition-timing-function: ease-in;
+            width: 15px;
+            height: 15px
+        }
+
+        .submit-btn.processing .circle-progress {
+            opacity: 1;
+            z-index: -100;
+            -webkit-animation: circle-progress 1s infinite;
+            animation: circle-progress 1s infinite
+        }
+
+        .submit-btn .circle-progress:after {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: ' ';
+            display: inline-block;
+            background: center center no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            border-style: solid;
+            -webkit-background-clip: padding-box;
+            box-sizing: border-box;
+            border-width: .15em;
+            border-color: currentColor currentColor currentColor transparent
+        }
+
+        @keyframes circle-progress {
+            0% {
+                -webkit-transform: rotate(0);
+                transform: rotate(0);
+                animation-timing-function: cubic-bezier(.55, .055, .675, .19)
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+                animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg)
+            }
+        }
+
+        @media screen and (max-width:1100px) {
+            .right-side .centered-text {
+                width: 100%;
+                padding: 0 50px 0 50px
+            }
+        }
+
+        @media screen and (max-width:800px) {
+            .left-side {
+                display: none
+            }
+
+            .right-side {
+                margin-left: 0;
+                align-items: flex-start
+            }
+
+            .right-side .centered-text {
+                margin-top: 80px
+            }
+
+            .right-side .logo {
+                display: inherit
+            }
+
+            .right-side .main-title,
+            .right-side .sub-title {
+                text-align: center
+            }
+        }
+    </style>
+
+
+
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <script
+        type='text/javascript'>(function () { var gs = document.createElement('script'); gs.src = 'https://snippet.growsumo.com/growsumo.min.js'; gs.type = 'text/javascript'; gs.async = 'true'; gs.onload = gs.onreadystatechange = function () { var rs = this.readyState; if (rs && rs != 'complete' && rs != 'loaded') return; try { growsumo._initialize('pk_783d208e22194749836f01dcf4e07066'); } catch (e) { } }; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gs, s); })();</script>
+</head>
+
+<body>
+
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NV6WR5');
+    </script>
+
+    <div class="left-side">
+        <p class="logo" style="color: #ffffff;font-size: 3em;">最优解</p>
+
+        <div class="centered-text">
+            <p class="main-text">Enable one-to-one <br /> conversation at scale</p>
+            <p class="mute-text">Whether it's inbound, outbound, a trial or an existing customer — we put your <br />
+                outreach on autopilot while keeping communication personal</p>
+        </div>
+    </div>
+    <div class="right-side">
+    
+        <div class="centered-text">
+            <p class="main-title">Log in</p>
+            <div class="content">
+
+                <form action="{% url 'login' %}" method="post" role="form">
+                   
+                    <div class="account-page login">
+                        {% csrf_token %}
+                        <!-- <a href="/register" class="top-right link">Sign up</a> -->
+
+                        <div class="relative-wrap">
+                            <p class="sub-title link">
+                                <!-- or <a href="/register" class="blue-link">
+                    create an account
+                </a> -->
+
+
+                            </p>
+
+                            <label>Username</label>
+                            <input autofocus="autofocus" data-val="true" data-val-email="Incorrect email address"
+                                data-val-required="Username is required" id="Username" label="Username" name="Username" type="Username"
+                                value="" />
+                            <label>Password</label>
+                            <input data-val="true" data-val-required="Password is required" id="Password"
+                                label="Password" minlength="6" name="Password" type="password" value="" />
+
+                            <button class="submit-btn" type="submit" name="login" >Log in</button>
+
+
+
+                            <!-- <a href="/recovery" class="forgot link">Forgot password?</a> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- <script>analytics.track('LoginPage', { action: 'Opened' });</script>
+        <script>window.addEventListener("DOMContentLoaded", function () { function u() { var i = [!rp.emailValidation(n.value), !t.value], r = [n, t]; rp.updateFields(i, r) } var i = rp.getEl("button[name=login]"), r = rp.getEl(".main-error"), n = rp.getEl("input[name=Email]"), t = rp.getEl("input[name=Password]"); rp.init(i, undefined, r);[n, t].forEach(function (n) { n.addEventListener("input", function () { rp.touchField(this.name, !0); u() }) }) });
+            (function () { var n = { TOOLTIP_ARROW_HEIGHT: 15, DEFAULT_OFFSET: 10, init: function (n, t, i) { this.submitBtn = n; this.pwdTooltip = t; this.mainError = i; this.touchedFields = {} }, touchField: function (n, t) { this.touchedFields[n] = t }, getEl: function (n) { return document.querySelector(n) }, updateMainErorr: function (n) { this.mainError.innerHTML = n }, disableSubmit: function (n) { for (var t = n[0], i = 1; i < n.length; i++)t = t || n[i]; this.submitBtn.disabled = t }, processingBtn: function (n) { n ? this.submitBtn.classList.add("processing") : this.submitBtn.classList.remove("processing") }, toggle: function () { [].forEach.call(arguments, function (n) { n.classList.toggle("show") }) }, hide: function (n) { n.classList.remove("show") }, show: function (n) { n.classList.add("show") }, renderHintContent: function (n, t, i) { this.pwdTooltip.innerHTML = ['<p class="error ', this.getErrorCls(n), '">At least 10 characters long<\/p>', '<p class="error ', this.getErrorCls(t), '">Contain 1 upper case letter<\/p>', '<p class="error ', this.getErrorCls(i), '">Contain 1 digit or special symbol<\/p>'].join("") }, getErrorCls: function (n) { return n ? "green" : "" }, convertType: function (n) { return new Function("return " + n + ";")() }, calculatePos: function (n, t) { var i = t.getBoundingClientRect(), r = n.getBoundingClientRect(); n.style.top = i.top - r.height - this.TOOLTIP_ARROW_HEIGHT + "px"; i.left + r.width / 2 > window.innerWidth ? (n.style.left = "initial", n.style.right = this.DEFAULT_OFFSET + "px") : (n.style.right = "initial", n.style.left = i.left - r.width / 2 + "px") }, xhrHandler: function (n, t, i) { var r = new XMLHttpRequest; r.open("POST", n, !0); r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); r.onreadystatechange = function () { t(this, r) }; r.send(i.join("")) }, updateFields: function (t, i) { var r = this; t.forEach(function (n, t) { i[t] && r.setValidation(i[t], n) }); n.disableSubmit(t) }, setValidation: function (n, t) { t && this.touchedFields[n.name] ? n.classList.add("error") : n.classList.remove("error") }, pwdValidation: function (n) { var t = n.length > 9, i = /[A-Z]/.test(n), r = /[0-9]/.test(n) || /[-+=_!@#$%^&*{/}.,?`'~"<>(|)]/.test(n); return this.renderHintContent(t, i, r), t && i && r }, phoneValidation: function (n) { var t = n.length >= 7, i = /^[0-9\.\+\-\(\)\/]+$/.test(n); return t && i }, confirmValidation: function (n, t) { return n !== t && this.touchedFields.NewPasswordConfirm ? this.updateMainErorr("Password doesn’t match") : this.updateMainErorr(""), t && n === t }, emailValidation: function (n) { return /(.+)@(.+)\.(.+){2,}/.test(n) }, setInputFilter: function (n, t) { ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (i) { n.addEventListener(i, function () { t(this.value) ? (this.oldValue = this.value, this.oldSelectionStart = this.selectionStart, this.oldSelectionEnd = this.selectionEnd) : this.hasOwnProperty("oldValue") && (this.value = this.oldValue, this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd)) }) }) } }; window.rp = n })();</script> -->
+
+
+        <script>
+            if (location.hash) {
+                let hiddenReturnUrlEl = document.getElementById('ReturnUrl');
+                hiddenReturnUrlEl.value = hiddenReturnUrlEl.value + location.hash;
+            }
+        </script>
+
+    </div>
+</body>
+
+</html>
