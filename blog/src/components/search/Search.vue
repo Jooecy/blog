@@ -230,4 +230,9 @@ export default {
 	font-family: Calibre, sans-serif;
 	font-size: 14px;
 }
+
+button {
+        outline:none;
+        cursor:pointer;
+}
 </style>

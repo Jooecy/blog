@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Search from 'components/search/Search'
 
-const Search = () => import('components/search/Search')
 const Blog = () => import('components/blog/Blog')
 const Login = () => import('components/Login')
 Vue.use(VueRouter)
