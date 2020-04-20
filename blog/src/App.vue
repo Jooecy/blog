@@ -34,13 +34,14 @@ export default {
   methods: {
     yz() {
       request({
-           url: '/do_something/',
+           url: '/api/do_something/',
            method: 'post',
            headers: {'Authorization':localStorage.getItem('logintoken')}
 
             
           }).then(res => {
-             console.log(res);}
+            //  console.log(res);
+             }
           )
     },
     delStatus() {
@@ -49,7 +50,7 @@ export default {
     },
     getStatus(){
       const token = localStorage.getItem('logintoken')
-      console.log(token);  
+      // console.log(token);  
       
       if(token){
         this.$store.commit('changeLoginStatus')

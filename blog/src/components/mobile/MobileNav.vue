@@ -5,8 +5,9 @@
 	>
 		<div class="flex justify-between items-center h-full" data-v-205c0e3c>
                 
-            	<router-link to="/search"
+            	<router-link :to="search" 
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
+				:style="isActivate(search)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -41,8 +42,9 @@
 			</router-link>
 			<!---->
 
-			<router-link to="/notes"
+			<router-link :to="notes"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
+				:style="isActivate(notes)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -76,8 +78,9 @@
 				>Notes</span>
 			</router-link>
 			<!---->
-			<router-link to="/marks"
+			<router-link :to="marks"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
+				:style="isActivate(marks)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -111,8 +114,9 @@
 				>Marks</span>
 			</router-link>
 			<!---->
-			<router-link to="/links"
+			<router-link :to="links"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
+				:style="isActivate(links)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -187,8 +191,9 @@
 
 
             
-			<router-link to="/blog"
+			<router-link :to="blog"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
+				:style="isActivate(blog)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -219,7 +224,30 @@
 
 <script>
 export default {
-	name: "MobileNav"
+	name: "MobileNav",
+	data() {
+		return {
+			search: "/search",
+			notes: "/notes",
+			marks: "/marks",
+			links: "/links",
+			blog: "/blog"
+		}
+	},
+	computed: {
+		isActivate() {
+			return function (to) {
+				if(this.$route.path.indexOf(to) !== -1) {
+					// console.log(this.$route.path.indexOf(to));
+					// console.log(this.$route.path);
+					// console.log(to);
+					
+				return {color:'#409EFF'}
+			}
+			
+			}
+		}
+	},
 };
 </script>
 
