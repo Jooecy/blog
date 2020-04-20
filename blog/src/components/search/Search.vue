@@ -45,7 +45,9 @@ export default {
 	data() {
 		return {
 			keyword: '',
-			loginStatus: this.$store.getters.getStatus
+			// loginStatus: this.$store.getters.getStatus 这样写刷新就退出登录了
+			loginStatus: localStorage.getItem('logintoken'), //获取token挺好的
+
 		}
 	},
     methods: {
