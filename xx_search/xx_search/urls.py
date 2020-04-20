@@ -21,12 +21,12 @@ from . import views
 
 urlpatterns = [
     # path中的第一个参数，为url路径，并不是应用名称。为空''则是首页。
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
     path('api/search', views.index, name="index"),
     path('api/login/', views.login, name="login"),
     path('loginstatus/',csrf_exempt(views.loginstatus),name='loginstatus'),
     path('login_out/', views.logout_view, name="login_out"),
-    path('mark/', include('marks.urls')),
+    path('api/mark/', include('marks.urls')),
     path('api/blog/',include('blog.urls')),
     path('api/do_something/',views.do_something,name='do_something')
 ]
