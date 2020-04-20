@@ -1,4 +1,4 @@
-#!/home/xiaoxi/xsearch_env/bin/python3
+#!/home/xiaoxi/blog/xsearch_env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
