@@ -3,7 +3,7 @@
      <div v-show="isShow"><el-card class="box-card" v-loading="isLoading">
   <div slot="header" class="clearfix">
     <span>{{title | show25Str}}</span>
-    <i v-if="markIconShow" v-bind:class="{'el-icon-star-off':nomark, 'el-icon-star-on':marked}" style="float:right;color:#409EFF" @click="markResult"></i>
+    <i v-if="markIconShow" v-bind:class="{'el-icon-star-off':nomark, 'el-icon-star-on':marked}" style="float:right;color:#409EFF;cursor:pointer" @click="markResult"></i>
   </div>
   <div class="text item">
     {{description}}
