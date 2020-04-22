@@ -108,10 +108,12 @@ export default {
 }
 .el-collapse-item__header {
     font-size: 14px;
-    border-bottom: 0px;
+    border-bottom: 0px !important;
 }
+
+
 .el-card__body {
-    padding-top: 0.1em;
+    padding-top: 0.1em !important;
 }
 .el-collapse {
     border-top: 0px solid #EBEEF5;
