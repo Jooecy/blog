@@ -75,7 +75,7 @@ export default {
               //   window.location.reload();
               // }, 10);
               setTimeout(() => {
-                window.location.href="/#/blog";
+                window.location.href="/#/search";
                 window.location.reload();
               }, 500);
               
