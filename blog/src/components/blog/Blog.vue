@@ -103,18 +103,16 @@ export default {
 </script>
 
 <style scoped>
-.el-collapse-item__content {
+.el-collapse-item {
     padding-bottom: 0px;
-}
-/* .el-collapse-item__header {
     font-size: 14px;
     border-bottom: 0px !important;
 }
 
 
-.el-card__body {
+.el-card {
     padding-top: 0.1em !important;
-} */
+}
 .el-collapse {
     border-top: 0px solid #EBEEF5;
     border-bottom: 0px solid #EBEEF5;
