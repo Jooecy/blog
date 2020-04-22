@@ -17,9 +17,7 @@
 
 </div>
 
-<transition name="fade">
-<div v-if="!marksList.length" style="text-align:center">暂无Mark</div>
-</transition>
+<div v-if="noMark" style="text-align:center">暂无Mark</div>
 
 <div class="banner"></div>
 </div>
@@ -32,6 +30,7 @@ export default {
   data() {
       return {
           marksList:[],
+          noMark: false
       }
   },
   created() {
@@ -47,6 +46,9 @@ export default {
       }).then(res => {
             //  console.log(res);
              this.marksList = res.data
+             if(this.marksList.length == 0) {
+               this.noMark = true
+             }
           }).catch(err => {
             // console.log(123);
      
@@ -131,11 +133,4 @@ export default {
     margin-top: 5em;
 }
 
-
-.fade-enter-active{
-  transition: opacity 1s;
-}
-.fade-enter{
-  opacity: 0;
-}
 </style>
