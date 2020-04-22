@@ -1,4 +1,4 @@
-#!/home/xiaoxi/xsearch_env/bin/python3
+#!/home/xiaoxi/blog/xsearch_env/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'autopep8==1.5.1','console_scripts','autopep8'
 __requires__ = 'autopep8==1.5.1'
 import re
