@@ -1,10 +1,10 @@
 <template>
 <div>
     <div class="banner"></div>
-    <div v-if="!marksList.length" style="text-align:center">暂无Mark</div>
+    
      <div v-for="(i, index) in marksList" :key="i.url"><el-card class="box-card">
   <div slot="header" class="clearfix">
-    <span>{{i.title | show25Str}}{{index}}</span>
+    <span>{{i.title | show25Str}}</span>
     <i class="el-icon-delete" style="float:right;color:#409EFF;cursor:pointer" @click="open(index)"></i>
   </div>
   <div class="text item">
@@ -16,6 +16,7 @@
 </el-card>
 
 </div>
+<div v-if="!marksList.length" style="text-align:center">暂无Mark</div>
 <div class="banner"></div>
 </div>
 </template>
