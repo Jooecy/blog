@@ -114,9 +114,8 @@ export default {
 <style scoped>
 .loginform {
     margin: 0 auto;
-    margin-top: 2em;
     width: 88%;
     max-width: 480px;
-    margin-top: 20%;
+    margin-top: 13%;
   }
 </style>
