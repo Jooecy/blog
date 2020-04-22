@@ -3,7 +3,7 @@
      <div v-show="isShow"><el-card class="box-card" v-loading="isLoading">
   <div slot="header" class="clearfix">
     <span>{{title | show25Str}}</span>
-    <i v-bind:class="{'el-icon-star-off':nomark, 'el-icon-star-on':marked}" style="float:right;color:#409EFF" @click="markResult"></i>
+    <i v-if="markIconShow" v-bind:class="{'el-icon-star-off':nomark, 'el-icon-star-on':marked}" style="float:right;color:#409EFF" @click="markResult"></i>
   </div>
   <div class="text item">
     {{description}}
@@ -23,6 +23,7 @@ export default {
   name: 'Result',
       data() {
         return {
+            markIconShow:false,
             nomark:true,
             marked:false,
             isShow: true,
@@ -38,6 +39,35 @@ export default {
     methods: {
         markResult() {
 
+          request({
+            url: 'http://127.0.0.1:8000/api/mark/',
+            method: 'post',
+            headers: {'Authorization':localStorage.getItem('logintoken')},
+            data:{
+              title: this.title,
+              description: this.description,
+              url: this.realurl,
+              is_mark: this.nomark
+            },
+            
+          }).then(res => {
+             console.log('结果'+res);
+            //  this.title = res.data.title
+            //  this.description = res.data.description
+            //  this.url = res.data.url.substring(0,35) + '...'
+            //  this.realurl = res.data.url
+            //  this.result = res.data
+            //  this.isShow = true
+            //  this.isLoading = false
+          }).catch(err => {
+            console.log(123);
+            // this.title = '请求失败'
+            // this.description = '筛选最优结果失败你可以直接Google该关键词。'
+            // this.url = ''
+            // this.isShow = true
+            // this.isLoading = false
+          }) 
+          
           if(this.nomark == true){
             this.nomark = false
             this.marked = true
@@ -52,8 +82,45 @@ export default {
           const keyword = this.keyword
           console.log(keyword);
           
+
+          
+          // request({
+          //   url: 'http://127.0.0.1:8000/api/mark/',
+          //   method: 'post',
+          //   headers: {'Authorization':localStorage.getItem('logintoken')},
+          //   data:{
+          //     title: this.title,
+          //     description: this.description,
+          //     url: this.url,
+          //     is_mark: this.nomark
+          //   },
+            
+          // }).then(res => {
+          //    console.log('结果'+res);
+          //   //  this.title = res.data.title
+          //   //  this.description = res.data.description
+          //   //  this.url = res.data.url.substring(0,35) + '...'
+          //   //  this.realurl = res.data.url
+          //   //  this.result = res.data
+          //   //  this.isShow = true
+          //   //  this.isLoading = false
+          // }).catch(err => {
+          //   console.log(123);
+          //   // this.title = '请求失败'
+          //   // this.description = '筛选最优结果失败你可以直接Google该关键词。'
+          //   // this.url = ''
+          //   // this.isShow = true
+          //   // this.isLoading = false
+          // }) 
+
+
           request({
-            url: '/api/search?search='+keyword,
+            url: 'http://127.0.0.1:8000/api/search/',
+            method: 'post',
+            headers: {'Authorization':localStorage.getItem('logintoken')},
+            data:{
+              search: keyword
+            },
             // params:{
             //   search: keyword
             // },
@@ -63,6 +130,16 @@ export default {
              if(res.data.title == undefined){
                rejert()
              }
+
+
+             this.nomark = true
+             this.marked = false
+             if(res.data.is_marked) {
+               this.nomark = false
+               this.marked = true
+             }
+             this.markIconShow = true
+
              this.title = res.data.title
              this.description = res.data.description
              this.url = res.data.url.substring(0,35) + '...'
@@ -78,6 +155,8 @@ export default {
             this.isShow = true
             this.isLoading = false
           }) 
+
+          
         }
     },
     filters: {

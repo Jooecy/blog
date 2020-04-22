@@ -42,9 +42,9 @@
 			</router-link>
 			<!---->
 
-			<router-link :to="notes"
+			<router-link :to="info"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
-				:style="isActivate(notes)"
+				:style="isActivate(info)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -75,7 +75,7 @@
 				<span
 					class="block text-xs md:text-base md:pl-3 font-medium text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary transition-colors duration-300 ease-linear"
 					data-v-205c0e3c
-				>Notes</span>
+				>Info</span>
 			</router-link>
 			<!---->
 			<router-link :to="marks"
@@ -114,9 +114,9 @@
 				>Marks</span>
 			</router-link>
 			<!---->
-			<router-link :to="links"
+			<router-link :to="about"
 				class="block md:flex md:justify-center w-full p-2 md:p-4 text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary hover:no-underline hover:text-primary-base dark:hover:text-primary-base text-center visited:text-nuxt-gray transition-colors duration-300 ease-linear"
-				:style="isActivate(links)"
+				:style="isActivate(about)"
 				data-v-205c0e3c
 			>
 				<svg
@@ -147,7 +147,7 @@
 				<span
 					class="block text-xs md:text-base md:pl-3 font-medium text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary transition-colors duration-300 ease-linear"
 					data-v-205c0e3c
-				>Links</span>
+				>About</span>
 			</router-link>
 			<!---->
 			<!-- <a
@@ -228,9 +228,9 @@ export default {
 	data() {
 		return {
 			search: "/search",
-			notes: "/notes",
+			info: "/info",
 			marks: "/marks",
-			links: "/links",
+			about: "/about",
 			blog: "/blog"
 		}
 	},

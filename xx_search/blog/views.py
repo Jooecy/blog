@@ -10,6 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 
 
+
 # from comment.forms import CommentForm
 
 

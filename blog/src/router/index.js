@@ -4,6 +4,9 @@ import Search from 'components/search/Search'
 
 const Blog = () => import('components/blog/Blog')
 const Login = () => import('components/Login')
+const Marks = () => import('components/marks/Marks')
+const About = () => import('components/about/About')
+const Info = () => import('components/info/Info')
 Vue.use(VueRouter)
 
   const routes = [
@@ -22,7 +25,19 @@ Vue.use(VueRouter)
   {
     path: '/blog',
     component: Blog
-  }
+  },
+  {
+    path: '/marks',
+    component: Marks
+  },
+  {
+    path: '/about',
+    component: About
+  },
+  {
+    path: '/info',
+    component: Info
+  },
 ]
 
 const router = new VueRouter({

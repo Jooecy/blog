@@ -106,7 +106,7 @@ export default {
             {name:'/blog',navItem:'Blog'},
             {name:'/notes',navItem:'Notes'},
             {name:'/marks',navItem:'Marks'},
-            {name:'/links',navItem:'Links'},
+            {name:'/about',navItem:'About'},
         ],
       		blog: '/blog',
 			activeIndex: "1",

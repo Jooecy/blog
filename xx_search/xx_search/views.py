@@ -7,14 +7,15 @@ from django.urls import reverse
 from django.http import JsonResponse
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
-
+from marks.models import Marks
 from django.shortcuts import HttpResponse
 
-
+@api_view(['POST'])
 def index(request):
+    receive = request.data
     context = {}
     # if request.user.is_authenticated:
-    keyword = request.GET.get('search', '')
+    keyword = receive.get('search', '')
     if keyword != '':
         print(keyword)
         # result = {'url':'1','title':'2','description':'3'}
@@ -25,13 +26,24 @@ def index(request):
         #     context['status'] = 1
         # # else:
         #     context['status'] = 0
-    else:
-        print('输入为空')
-        # context['not_login'] = '未登录无法查询'
+
+        ## 需要错误处理
+        if Marks.objects.filter(mark_user=request.user, url=result['url']):
+            # print('已经mark过')
+            result['is_marked'] = 1
+        # else:
+        #     print('没有mark过')
+
         if result == {}:
             return JsonResponse({'err':'没有数据'},safe=False)
-   
-    return JsonResponse(result,safe=False)
+        else:
+            return JsonResponse(result,safe=False)
+            # print(result)
+    # else:
+    #     print('输入为空')
+    #     context['not_login'] = '未登录无法查询'
+    return render(request, 'index/index.html', context)  ##之后注释掉
+    
 
 
 @api_view(['POST'])

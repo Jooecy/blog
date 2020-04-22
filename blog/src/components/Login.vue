@@ -59,7 +59,7 @@ export default {
           data.append('username',this.form.username)
           data.append('password',this.form.password)
           request({
-              url:'/api/login/',
+              url:'http://127.0.0.1:8000/api/login/',
               method: 'post',
               data: data
           }).then((res) => {
