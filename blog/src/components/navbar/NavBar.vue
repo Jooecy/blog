@@ -104,7 +104,7 @@ export default {
       navList:[
             {name:'/search',navItem:'Search'},
             {name:'/blog',navItem:'Blog'},
-            {name:'/notes',navItem:'Notes'},
+            {name:'/info',navItem:'Info'},
             {name:'/marks',navItem:'Marks'},
             {name:'/about',navItem:'About'},
         ],
