@@ -46,7 +46,7 @@ export default {
           }).then((res) => {
             if(res.data.msg == '验证通过'){
               this.islogin = true
-              this.$router.push('/blog')
+              this.$router.push('/search')
             }
           })
   },
