@@ -16,7 +16,7 @@
 <el-steps :active="active" align-center>
   <el-step title="搜索" description="使用XSearch刷选出最佳结果"></el-step>
   <el-step title="收藏" description="觉得有用？那就收藏下来吧"></el-step>
-  <el-step title="备注" description="在Marks中为你的收藏添加备注"></el-step>
+  <!-- <el-step title="备注" description="在Marks中为你的收藏添加备注"></el-step> -->
   <el-step title="管理" description="增删改查，随时管理Marks"></el-step>
 </el-steps>
 <el-button style="margin-top: 12px;float:right;margin-right:10%" @click="next">下一步</el-button>
@@ -36,7 +36,7 @@ export default {
 
     methods: {
       next() {
-        if (this.active++ > 3) this.active = 0;
+        if (this.active++ > 2) this.active = 0;
       }
     }
   }
@@ -60,6 +60,6 @@ export default {
     margin: 0 auto;
     margin-top: 2em;
     width: 88%;
-    max-width: 800px;
+    max-width: 480px;
   }
 </style>
