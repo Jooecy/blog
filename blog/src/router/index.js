@@ -16,27 +16,43 @@ Vue.use(VueRouter)
     },
     {
     path: '',
-    redirect: '/search'
+    redirect: '/search',
+
     },
   {
     path: '/search',
     component: Search,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/blog',
-    component: Blog
+    component: Blog,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/marks',
-    component: Marks
+    component: Marks,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/about',
-    component: About
+    component: About,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/info',
-    component: Info
+    component: Info,
+    meta: {
+      keepAlive: true
+    }
   },
 ]
 
