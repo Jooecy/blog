@@ -30,7 +30,7 @@ export default {
   },
   created() {
       request({
-        url: 'http://127.0.0.1:8000/api/mark/all',
+        url: '/api/mark/all',
         method: 'post',
         headers: {'Authorization':localStorage.getItem('logintoken')},
       }).then(res => {
@@ -47,7 +47,7 @@ export default {
         
         // console.log(this.marksList[index]['url']);
         request({
-        url: 'http://127.0.0.1:8000/api/mark/list_del_mark',
+        url: '/api/mark/list_del_mark',
         method: 'post',
         headers: {'Authorization':localStorage.getItem('logintoken')},
         data:{
@@ -93,7 +93,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .box-card {
    width: 480px;
     margin: 0 auto;

@@ -42,7 +42,7 @@ export default {
   }
 </script>
 
-<style>
+<style scoped>
 .steps {
     position: fixed;
     left: 10%;

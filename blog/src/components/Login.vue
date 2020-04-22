@@ -59,7 +59,7 @@ export default {
           data.append('username',this.form.username)
           data.append('password',this.form.password)
           request({
-              url:'http://127.0.0.1:8000/api/login/',
+              url:'/api/login/',
               method: 'post',
               data: data
           }).then((res) => {
@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .loginform {
     margin: 0 auto;
     margin-top: 2em;

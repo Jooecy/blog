@@ -40,7 +40,7 @@ export default {
         markResult() {
 
           request({
-            url: 'http://127.0.0.1:8000/api/mark/',
+            url: '/api/mark/',
             method: 'post',
             headers: {'Authorization':localStorage.getItem('logintoken')},
             data:{
@@ -115,7 +115,7 @@ export default {
 
 
           request({
-            url: 'http://127.0.0.1:8000/api/search/',
+            url: '/api/search/',
             method: 'post',
             headers: {'Authorization':localStorage.getItem('logintoken')},
             data:{
@@ -167,7 +167,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
   .text {
     font-size: 14px;
   }
