@@ -102,7 +102,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .el-collapse-item__content {
     padding-bottom: 0px;
 }
