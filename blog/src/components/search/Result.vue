@@ -29,7 +29,7 @@ export default {
             isShow: true,
             isLoading: false,
             title: '搜索历史',
-            description: '',
+            description: '搜索历史功能正在完善...',
             url: '',
             result: '',
             keyword: '',
