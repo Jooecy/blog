@@ -27,7 +27,7 @@
 </el-card>
 
 </div>
-<div class="pages">
+<div v-if="noBlog" class="pages">
 <div class="block">
     <el-pagination
       background
@@ -69,7 +69,8 @@ export default {
       pagecount: 0,
       res: '',
       // activeNames: ['1'],
-      blogId:''
+      blogId:'',
+      noBlog: false
     }
   },
   methods: {
@@ -94,6 +95,7 @@ export default {
         this.res = res.data
         this.pagecount = this.res.pop()
         scrollTo(0,0);
+        this.noBlog = true
         console.log(res.data)
       })
         console.log(val);
