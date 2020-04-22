@@ -68,7 +68,7 @@ export default {
       nums: 10,
       pagecount: 0,
       res: '',
-      activeNames: ['1'],
+      // activeNames: ['1'],
       blogId:''
     }
   },
@@ -76,14 +76,14 @@ export default {
     more(i) {
       console.log(i);
     },
-    handleChange(val) {
-      if(this.activeNames.indexOf(val)){
-      }else{
-        this.activeNames.push(val)
-      }
+    // handleChange(val) {
+    //   if(this.activeNames.indexOf(val)){
+    //   }else{
+    //     this.activeNames.push(val)
+    //   }
       
-      console.log(this.activeNames);
-    },
+    //   console.log(this.activeNames);
+    // },
     handleCurrentChange(val) {
       request({
         url: '/api/blog/',
