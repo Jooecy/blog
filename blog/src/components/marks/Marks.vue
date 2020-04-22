@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="banner"></div>
-    <div v-if="!marksList" style="text-align:center">暂无Mark</div>
+    <div v-if="!marksList.length" style="text-align:center">暂无Mark</div>
      <div v-for="(i, index) in marksList" :key="i.url"><el-card class="box-card">
   <div slot="header" class="clearfix">
     <span>{{i.title | show25Str}}{{index}}</span>
@@ -40,7 +40,7 @@ export default {
         method: 'post',
         headers: {'Authorization':localStorage.getItem('logintoken')},
       }).then(res => {
-             console.log(this.marksList);
+            //  console.log(res);
              this.marksList = res.data
           }).catch(err => {
             // console.log(123);
