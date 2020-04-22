@@ -11,15 +11,15 @@
   </div>
 
 
-<el-collapse v-model="activeNames" @change="handleChange(i.id)">
+<!-- <el-collapse v-model="activeNames" @change="handleChange(i.id)">
    <el-collapse-item :name="i.id">
-     <div slot="title">{{i.content.substring(0,18)}}</div>
+     <div slot="title">{{i.content.substring(0,18)}}</div> -->
   
   <div class="text item">
     {{i.content}}
   </div>
-</el-collapse-item>
-</el-collapse>
+<!-- </el-collapse-item>
+</el-collapse> -->
 
     <div style="font-size:0.8em;margin-top:1em;">
     <i class="el-icon-date"> {{i.time}}</i><el-button style="float: right; padding: 3px 0" type="text" @click="handleChange(i.id)"><i class="el-icon-date" style="float:right;color:#66b1ff;"> Read All</i></el-button>
