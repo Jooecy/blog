@@ -29,7 +29,12 @@ export default {
       }
   },
   created() {
+
       request({
+        url: '/api/do_something/',
+        method: 'post',
+        headers: {'Authorization':localStorage.getItem('logintoken')}
+      }).then(request({
         url: '/api/mark/all',
         method: 'post',
         headers: {'Authorization':localStorage.getItem('logintoken')},
@@ -39,7 +44,21 @@ export default {
           }).catch(err => {
             console.log(123);
      
-          }) 
+          }) ).catch(err => {
+            this.$router.push('/login')
+          })
+
+      // request({
+      //   url: '/api/mark/all',
+      //   method: 'post',
+      //   headers: {'Authorization':localStorage.getItem('logintoken')},
+      // }).then(res => {
+      //        console.log(res);
+      //        this.marksList = res.data
+      //     }).catch(err => {
+      //       console.log(123);
+     
+      //     }) 
 
   },
   methods: {
