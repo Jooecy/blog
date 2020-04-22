@@ -16,7 +16,11 @@
 </el-card>
 
 </div>
+
+<transition name="fade">
 <div v-if="!marksList.length" style="text-align:center">暂无Mark</div>
+</transition>
+
 <div class="banner"></div>
 </div>
 </template>
@@ -125,5 +129,13 @@ export default {
 }
 .banner {
     margin-top: 5em;
+}
+
+
+.fade-enter-active{
+  transition: opacity 1s;
+}
+.fade-enter{
+  opacity: 0;
 }
 </style>
