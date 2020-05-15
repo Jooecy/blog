@@ -52,7 +52,7 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
         set -l old_status $status
 
         # Prompt override?
-        if test -n "(xsearch_env) "            
+        if test -n "(xsearch_env) "
             printf "%s%s" "(xsearch_env) " (set_color normal)
         else
             # ...Otherwise, prepend env
